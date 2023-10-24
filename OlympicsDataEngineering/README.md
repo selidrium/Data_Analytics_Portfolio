@@ -2,7 +2,7 @@
 
 ## Azure Pipeline Diagram
 
-![Data Diagram](1.png)
+![Data Diagram](./img/1.png)
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@
     - Validate and Debug
 - Repeat for all the files and connect each "Copy Data" box to each other on completion
 
-![Example 1](2.png)
+![Example 1](./img/2.png)
 
 
 ## Step 3: Create Databricks
@@ -101,7 +101,7 @@ teams = spark.read.format("csv").option("header", "true").option("inferSchema", 
 athletes.show()
 ```
 
-![Example 2](3.png)
+![Example 2](./img/3.png)
 
 
 ### Calculate the avg # of entries by gender for each discipline
@@ -113,7 +113,7 @@ avg_entries_by_gender = entriesgender.withColumn(
 )
 avg_entries_by_gender.show()
 ```
-![Example 3](4.png)
+![Example 3](./img/4.png)
 
 ### Write transformed data in the "transformed-data" folder
 
@@ -124,7 +124,7 @@ entriesgender.repartition(1).write.mode("overwrite").option("header", "true").cs
 medals.repartition(1).write.mode("overwrite").option("header", "true").csv("/mnt/olympicdata/transformed-data/medals")
 teams.repartition(1).write.mode("overwrite").option("header", "true").csv("/mnt/olympicdata/transformed-data/teams")
 ```
-![Example 4](5.png)
+![Example 4](./img/5.png)
 
 ## Step 5: Load Data into Synapse Analytics
 
@@ -139,17 +139,17 @@ teams.repartition(1).write.mode("overwrite").option("header", "true").csv("/mnt/
    - Link it to the only available service.
    - Specify the input file located within the designated folder, starting with "part..."
      
-![Example 5](6.png)
+![Example 5](./img/6.png)
 
 - Continue and enable the "First row, Infer column names"
 - Create and repeat for all tables
 - Validate and remove illegal characters defined for the column names, then Publish
 
-![Example 6](7.png)
+![Example 6](./img/7.png)
 
 - You can now query the data
   
-![Example 7](8.png)
+![Example 7](./img/8.png)
 
 ## Step 6: Use Azure Synapse as Data Source for Power BI
 - Sign in to Power BI Desktop, and select Azure Synapse Workplace (Beta) as the source
